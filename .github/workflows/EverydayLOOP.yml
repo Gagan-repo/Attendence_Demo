@@ -1,8 +1,9 @@
 name: Auto Login Script
+
 on:
-  workflow_dispatch:  # 👈 This enables manual runs
+  workflow_dispatch:  # Enables manual run from GitHub UI
   schedule:
-    - cron: '40 6 * * 1-5'  # 12:10 PM IST, Monday to Friday
+    - cron: '40 6 * * 1-5'  # Runs at 12:10 PM IST (6:40 AM UTC), Monday to Friday
 
 jobs:
   run-script:
@@ -19,11 +20,9 @@ jobs:
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
-      - name: Install ChromeDriver
+      - name: Install ChromeDriver (fixed version)
         run: |
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-          wget -N https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip
+          wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
           sudo mv chromedriver /usr/local/bin/
           sudo chmod +x /usr/local/bin/chromedriver
