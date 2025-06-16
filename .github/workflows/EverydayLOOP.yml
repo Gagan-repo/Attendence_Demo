@@ -1,8 +1,8 @@
 name: Auto Login Script
-
 on:
+  workflow_dispatch:  # 👈 This enables manual runs
   schedule:
-    - cron: '40 6 * * 1-5'  # 12:10 PM IST (6:40 AM UTC), Monday to Friday
+    - cron: '40 6 * * 1-5'  # 12:10 PM IST, Monday to Friday
 
 jobs:
   run-script:
