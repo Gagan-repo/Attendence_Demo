@@ -12,7 +12,9 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
 # Initialize the WebDriver
-driver = webdriver.Chrome(options=chrome_options)
+# driver = webdriver.Chrome(options=chrome_options)
+from webdriver_manager.chrome import ChromeDriverManager
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
 # Navigate to the URL
 driver.get("https://iengage.coforge.com/ess2/Login?_M=Yydn1IEXOr4=")
