@@ -23,7 +23,7 @@ driver.get("https://iengage.coforge.com/ess2/Login?_M=Yydn1IEXOr4=")
 
 try:
     wait = WebDriverWait(driver, 20)
-    Login_Via_Creds = wait.until(EC.element_to_be_clickable((By., "//*[@class='login-card-footer-text cust-pt-2 grey-text mt-5 mb-0 logindiv']")))
+    Login_Via_Creds = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@class='login-card-footer-text cust-pt-2 grey-text mt-5 mb-0 logindiv']")))
     Login_Via_Creds.click()
     print("Clicked the login button successfully.")
 except Exception as e:
