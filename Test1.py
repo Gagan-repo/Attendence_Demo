@@ -32,11 +32,11 @@ except Exception as e:
 time.sleep(15)
 #######################################################################################
 max_retries = 3
-retry_delay = 5  # seconds
+retry_delay = 5
 
 for attempt in range(max_retries):
     try:
-        wait = WebDriverWait(driver, 20)  # wait up to 20 seconds
+        wait = WebDriverWait(driver, 20)
         element = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='txtEmpCode']")))
         print("Element found!")
         break  # Exit loop if element is found
