@@ -30,8 +30,28 @@ except Exception as e:
     print("Error:", e)
 
 time.sleep(15)
+#######################################################################################
+max_retries = 3
+retry_delay = 5  # seconds
 
-wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='txtEmpCode']")))
+for attempt in range(max_retries):
+    try:
+        wait = WebDriverWait(driver, 20)  # wait up to 20 seconds
+        element = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='txtEmpCode']")))
+        print("Element found!")
+        break  # Exit loop if element is found
+    except Exception as e:
+        print(f"Attempt {attempt + 1} failed: {e}")
+        if attempt < max_retries - 1:
+            print(f"Retrying in {retry_delay} seconds...")
+            time.sleep(retry_delay)
+        else:
+            print("Element not found after multiple attempts.")
+            driver.quit()
+            raise
+
+###########################################################################################
+# wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='txtEmpCode']")))
 driver.find_element(By.XPATH, "//*[@id='txtEmpCode']").send_keys("00123506")
 time.sleep(2)
 driver.find_element(By.XPATH, "//*[@id='txtPassword']").send_keys("Gaga@Cof1")
