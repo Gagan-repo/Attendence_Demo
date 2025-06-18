@@ -29,7 +29,7 @@ try:
 except Exception as e:
     print("Error:", e)
 
-time.sleep(5)
+time.sleep(15)
 
 wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='txtEmpCode']")))
 driver.find_element(By.XPATH, "//*[@id='txtEmpCode']").send_keys("00123506")
