@@ -31,25 +31,29 @@ except Exception as e:
 
 time.sleep(15)
 #######################################################################################
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
 max_retries = 3
 retry_delay = 5
 
 for attempt in range(max_retries):
-    try:
-        wait = WebDriverWait(driver, 20)
-        element = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='txtEmpCode']")))
-        print("Element found!")
-        break  # Exit loop if element is found
-    except Exception as e:
-        print(f"Attempt {attempt + 1} failed: {e}")
-        if attempt < max_retries - 1:
-            print(f"Retrying in {retry_delay} seconds...")
-            time.sleep(retry_delay)
-        else:
-            print("Element not found after multiple attempts.")
-            driver.quit()
-            raise
-
+    try:
+        wait = WebDriverWait(driver, 20)
+        element = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='txtEmpCode']")))
+        print("Element found!")
+        break  # Exit loop if element is found
+    except Exception as e:
+        print(f"Attempt {attempt + 1} failed: {e}")
+        if attempt < max_retries - 1:
+            print(f"Retrying in {retry_delay} seconds...")
+            time.sleep(retry_delay)
+        else:
+            print("Element not found after multiple attempts.")
+            driver.quit()
+            raise
 ###########################################################################################
 # wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='txtEmpCode']")))
 driver.find_element(By.XPATH, "//*[@id='txtEmpCode']").send_keys("00123506")
