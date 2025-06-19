@@ -19,6 +19,13 @@ chrome_options.add_argument("--window-size=1920,1080")
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
+# Log Chrome and ChromeDriver versions
+chrome_version = driver.capabilities.get('browserVersion', 'Unknown')
+print(f"Chrome version in use: {chrome_version}")
+
+driver_version = driver.capabilities.get('chrome', {}).get('chromedriverVersion', 'Unknown').split(' ')[0]
+print(f"ChromeDriver version in use: {driver_version}")
+
 # Navigate to the URL
 driver.get("https://iengage.coforge.com/ess2/Login?_M=Yydn1IEXOr4=")
 
